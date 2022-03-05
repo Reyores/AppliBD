@@ -38,11 +38,53 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 //Requête 1 :
+
+/*
 $req1 = Game::where( 'name', 'like', '%mario%' )->get();
 
 foreach ($req1 as $l){
-    echo "{$l->name},{$l->name}";
+    echo "{$l->id},{$l->name}";
     echo"<br>";
 }
+*/
+
+//Requête 2 :
+
+$req2 = Company::where( 'location_country', '=', 'japon' )->get();
+/*
+foreach ($req2 as $l){
+    echo "{$l->id},{$l->name}";
+    echo"<br>";
+}*/
+
+//Requête 3 :
+
+/*
+$req3 = Platform::where( 'install_base', '>=', 10000000 )->get();
+
+foreach ($req3 as $l){
+    echo "{$l->id},{$l->name}, nombre d'installe : {$l->install_base}";
+    echo"<br>";
+}
+*/
+
+//Requête 4 :
+
+/*
+$req4 = Game::where( 'id', '>=', 21173 )->take(442)->get();
+
+foreach ($req4 as $l){
+    echo "{$l->id}, {$l->name}";
+    echo"<br>";
+}
+*/
+
+//Requête 5 :
 
 
+$req5 = Game::get();
+
+foreach ($req5 as $l){
+    echo "Le jeu {$l->id} a pour nom <strong>{$l->name}</strong>, a comme deck {$l->deck}";
+    echo"<br>";
+}
