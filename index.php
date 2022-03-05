@@ -12,6 +12,23 @@ use Illuminate\Database\Capsule\Manager as DB;
 
 use appbdd\modele\Character;
 use appbdd\modele\Company;
+use appbdd\modele\Enemies;
+use appbdd\modele\Friends;
+use appbdd\modele\Game_developers;
+use appbdd\modele\Game_publishers;
+use appbdd\modele\Game_rating;
+use appbdd\modele\Game;
+use appbdd\modele\Game2character;
+use appbdd\modele\Game2genre;
+use appbdd\modele\Game2platform;
+use appbdd\modele\Game2rating;
+use appbdd\modele\Game2theme;
+use appbdd\modele\Genre;
+use appbdd\modele\Platform;
+use appbdd\modele\Rating_board;
+use appbdd\modele\Similar_games;
+use appbdd\modele\Theme;
+
 
 
 
@@ -20,7 +37,12 @@ $db->addConnection(parse_ini_file(__DIR__.'/src/config/dbconfig.ini'));
 $db->setAsGlobal();
 $db->bootEloquent();
 
+//Requête 1 :
+$req1 = Game::where( 'name', 'like', '%mario%' )->get();
 
-$q2 = Character::where( 'id', '=', 12 )->first();
+foreach ($req1 as $l){
+    echo "{$l->name},{$l->name}";
+    echo"<br>";
+}
 
-var_dump($q2->name);
+
