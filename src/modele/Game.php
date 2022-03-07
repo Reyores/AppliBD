@@ -69,4 +69,16 @@ class Game extends \Illuminate\Database\Eloquent\Model
                                     'game_id');
     }
 
+    public function character2() {
+        return $this->hasMany('Character',
+                                    'character_id');
+    }
+
+    public function similarGames() {
+        return $this->belongsToMany('Game', 
+                                    'Similar_games',
+                                    'game1_id',
+                                    'game2_id');
+    }
+
 }

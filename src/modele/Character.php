@@ -26,4 +26,23 @@ class Character extends \Illuminate\Database\Eloquent\Model
                                     'character_id');
     }
 
+    public function game2() {
+        return $this->belongsToMany('Game',
+                            'game_id');
+    }
+
+    public function friends() {
+        return $this->belongsToMany('Character', 
+                                    'Friends',
+                                    'char1_id',
+                                    'char2_id');
+    }
+
+    public function enemies() {
+        return $this->belongsToMany('Character', 
+                                    'Enemies',
+                                    'char1_id',
+                                    'char2_id');
+    }
+
 }
