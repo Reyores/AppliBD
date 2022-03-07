@@ -19,10 +19,18 @@ class Company extends \Illuminate\Database\Eloquent\Model
     protected $primaryKey = 'id';
 
     // CONSTRUCTEUR
-/*
-    public function liste()
-    {
-        return $this->belongsTo('\mywishlist\modele\Liste', 'liste_id');
-    }*/
+    public function game_dev() {
+        return $this->belongsToMany('Game', 
+                                    'Game_developers',
+                                    'comp_id',
+                                    'game_id');
+    }
+
+    public function game_publi() {
+        return $this->belongsToMany('Game', 
+                                    'Game_publishers',
+                                    'comp_id',
+                                    'game_id');
+    }
 
 }

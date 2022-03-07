@@ -19,10 +19,9 @@ class Rating_board extends \Illuminate\Database\Eloquent\Model
     protected $primaryKey = 'id';
 
     // CONSTRUCTEUR
-/*
-    public function liste()
-    {
-        return $this->belongsTo('\mywishlist\modele\Liste', 'liste_id');
-    }*/
+    public function ratingBoard() {
+        return $this->hasMany('Game_rating', 
+                            'GameRating_id');
+    }
 
 }

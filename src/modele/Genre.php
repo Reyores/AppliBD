@@ -19,10 +19,12 @@ class Genre extends \Illuminate\Database\Eloquent\Model
     protected $primaryKey = 'id';
 
     // CONSTRUCTEUR
-/*
-    public function liste()
+    public function game()
     {
-        return $this->belongsTo('\mywishlist\modele\Liste', 'liste_id');
-    }*/
+        return $this->belongsToMany('Game', 
+                                    'Game2genre',
+                                    'genre_id',
+                                    'game_id');
+    }
 
 }

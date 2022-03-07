@@ -19,10 +19,12 @@ class Platform extends \Illuminate\Database\Eloquent\Model
     protected $primaryKey = 'id';
 
     // CONSTRUCTEUR
-/*
-    public function liste()
-    {
-        return $this->belongsTo('\mywishlist\modele\Liste', 'liste_id');
-    }*/
+
+    public function game() {
+        return $this->belongsTo('Game', 
+                                'Game2platform',
+                                'platform_id',
+                                'game_id');
+    }
 
 }
