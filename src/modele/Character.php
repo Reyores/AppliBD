@@ -21,9 +21,9 @@ class Character extends \Illuminate\Database\Eloquent\Model
     // CONSTRUCTEUR
     public function game() {
         return $this->belongsToMany(Game::class, 
-                                    'Game2character',
-                                    'game_id',
-                                    'character_id');
+                                    Game2character::class,
+                                    'character_id',
+                                    'game_id');
     }
 
     public function game2() {

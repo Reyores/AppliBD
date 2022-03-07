@@ -89,7 +89,7 @@ foreach ($req5 as $l){
     echo"<br>";
 }
 */
-
+/*
 $req6 = Game::find(12342);
 echo "NOM DU JEU :" . $req6;
 
@@ -97,4 +97,14 @@ $r = $req6->character()->get();
 echo "<br> <br> PERSOS : <br>";
 foreach($r as $value){
     echo 'id : ' . $value->id . ' name : ' .$value->name . ' deck : ' . $value->deck ."<br>" ;
-}
+}*/
+
+$req7 = Game::where('name','like', 'mario%' )->get();
+foreach($req7 as $value){
+    echo "Nom du jeu " . $value->name . "<br>";
+    echo "Nom Perso : <br>";
+    $r2 = $value->character()->get();
+    foreach($r2 as $v){
+        echo $v->name . '<br>';
+    }
+} 

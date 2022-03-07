@@ -65,8 +65,8 @@ class Game extends \Illuminate\Database\Eloquent\Model
     public function character() {
         return $this->belongsToMany(Character::class, 
                                     Game2character::class,
-                                    'character_id',
-                                    'game_id');
+                                    'game_id',
+                                    'character_id');
     }
 
     public function character2() {
