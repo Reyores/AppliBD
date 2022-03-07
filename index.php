@@ -80,11 +80,21 @@ foreach ($req4 as $l){
 */
 
 //Requête 5 :
-
+/*
 
 $req5 = Game::get();
 
 foreach ($req5 as $l){
     echo "Le jeu {$l->id} a pour nom <strong>{$l->name}</strong>, a comme deck {$l->deck}";
     echo"<br>";
+}
+*/
+
+$req6 = Game::find(12342);
+echo "NOM DU JEU :" . $req6;
+
+$r = $req6->character()->get();
+echo "<br> <br> PERSOS : <br>";
+foreach($r as $value){
+    echo 'id : ' . $value->id . ' name : ' .$value->name . ' deck : ' . $value->deck ."<br>" ;
 }
