@@ -19,10 +19,11 @@ class Character extends \Illuminate\Database\Eloquent\Model
     protected $primaryKey = 'id';
 
     // CONSTRUCTEUR
-/*
-    public function liste()
-    {
-        return $this->belongsTo('\mywishlist\modele\Liste', 'liste_id');
-    }*/
+    public function game() {
+        return $this->belongsToMany('Game', 
+                                    'Game2character',
+                                    'game_id',
+                                    'character_id');
+    }
 
 }

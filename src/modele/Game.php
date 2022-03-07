@@ -62,4 +62,11 @@ class Game extends \Illuminate\Database\Eloquent\Model
                                     'rating_id');
     }
 
+    public function character() {
+        return $this->belongsToMany('Character', 
+                                    'Game2character',
+                                    'character_id',
+                                    'game_id');
+    }
+
 }
