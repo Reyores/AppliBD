@@ -32,5 +32,12 @@ class Company extends \Illuminate\Database\Eloquent\Model
                                     'comp_id',
                                     'game_id');
     }
+    
+    public function platform() {
+        return $this->belongsToMany('Platform', 
+                                    '',
+                                    'comp_id',
+                                    'game_id');
+    }
 
 }
