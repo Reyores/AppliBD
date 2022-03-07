@@ -20,7 +20,7 @@ class Rating_board extends \Illuminate\Database\Eloquent\Model
 
     // CONSTRUCTEUR
     public function ratingBoard() {
-        return $this->hasMany('Game_rating', 
+        return $this->hasMany(Game_rating::class, 
                             'GameRating_id');
     }
 

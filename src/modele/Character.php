@@ -20,27 +20,27 @@ class Character extends \Illuminate\Database\Eloquent\Model
 
     // CONSTRUCTEUR
     public function game() {
-        return $this->belongsToMany('Game', 
+        return $this->belongsToMany(Game::class, 
                                     'Game2character',
                                     'game_id',
                                     'character_id');
     }
 
     public function game2() {
-        return $this->belongsToMany('Game',
+        return $this->belongsToMany(Game::class,
                             'game_id');
     }
 
     public function friends() {
-        return $this->belongsToMany('Character', 
-                                    'Friends',
+        return $this->belongsToMany(Character::class, 
+                                    Friends::class,
                                     'char1_id',
                                     'char2_id');
     }
 
     public function enemies() {
-        return $this->belongsToMany('Character', 
-                                    'Enemies',
+        return $this->belongsToMany(Character::class, 
+                                    Enemies::class,
                                     'char1_id',
                                     'char2_id');
     }

@@ -21,14 +21,14 @@ class Platform extends \Illuminate\Database\Eloquent\Model
     // CONSTRUCTEUR
 
     public function game() {
-        return $this->belongsTo('Game', 
-                                'Game2platform',
+        return $this->belongsTo(Game::class, 
+                                Game2platform::class,
                                 'platform_id',
                                 'game_id');
     }
 
     public function company() {
-        return $this->belongsTo('Company', 
+        return $this->belongsTo(Company::class, 
                             'company_id');
     }
 

@@ -20,14 +20,14 @@ class Company extends \Illuminate\Database\Eloquent\Model
 
     // CONSTRUCTEUR
     public function game() {
-        return $this->belongsToMany('Game', 
-                                    'Game2rating',
+        return $this->belongsToMany(Game::class, 
+                                    Game2rating::class,
                                     'rating_id',
                                     'game_id');
     }
 
     public function ratingBoard() {
-        return $this->belongsTo('Rating_board', 
+        return $this->belongsTo(Rating_board::class, 
                                 'RatingBoard_id');
     }
 

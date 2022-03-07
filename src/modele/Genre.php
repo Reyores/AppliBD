@@ -21,8 +21,8 @@ class Genre extends \Illuminate\Database\Eloquent\Model
     // CONSTRUCTEUR
     public function game()
     {
-        return $this->belongsToMany('Game', 
-                                    'Game2genre',
+        return $this->belongsToMany(Game::class, 
+                                    Game2genre::class,
                                     'genre_id',
                                     'game_id');
     }

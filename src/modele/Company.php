@@ -20,24 +20,23 @@ class Company extends \Illuminate\Database\Eloquent\Model
 
     // CONSTRUCTEUR
     public function game_dev() {
-        return $this->belongsToMany('Game', 
-                                    'Game_developers',
+        return $this->belongsToMany(Game::class, 
+                                    Game_developers::class,
                                     'comp_id',
                                     'game_id');
     }
 
     public function game_publi() {
-        return $this->belongsToMany('Game', 
-                                    'Game_publishers',
+        return $this->belongsToMany(Game::class, 
+                                    Game_publishers::class,
                                     'comp_id',
                                     'game_id');
     }
     
     public function platform() {
-        return $this->belongsToMany('Platform', 
-                                    '',
-                                    'comp_id',
-                                    'game_id');
+        return $this->hasMany(Platform::class, 
+                            'platform_id');
     }
+
 
 }

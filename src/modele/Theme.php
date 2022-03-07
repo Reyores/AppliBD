@@ -20,8 +20,8 @@ class Theme extends \Illuminate\Database\Eloquent\Model
 
     // CONSTRUCTEUR
     public function game() {
-        return $this->belongsToMany('Game', 
-                                    'Game2theme',
+        return $this->belongsToMany(Game::class, 
+                                    Game2theme::class,
                                     'theme_id',
                                     'game_id');
     }
