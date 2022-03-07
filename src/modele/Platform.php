@@ -27,4 +27,9 @@ class Platform extends \Illuminate\Database\Eloquent\Model
                                 'game_id');
     }
 
+    public function company() {
+        return $this->belongsTo('Company', 
+                            'company_id');
+    }
+
 }
