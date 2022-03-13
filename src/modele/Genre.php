@@ -19,8 +19,7 @@ class Genre extends \Illuminate\Database\Eloquent\Model
     protected $primaryKey = 'id';
 
     // CONSTRUCTEUR
-    public function game()
-    {
+    public function game() {
         return $this->belongsToMany(Game::class, 
                                     Game2genre::class,
                                     'genre_id',
