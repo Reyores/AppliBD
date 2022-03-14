@@ -31,11 +31,21 @@ use appbdd\modele\Theme;
 
 
 
+$db = new DB();
+$db->addConnection(parse_ini_file(__DIR__.'/src/config/dbconfig.ini'));
+$db->setAsGlobal();
+$db->bootEloquent();
+
+
+
 $time_start = microtime(true) ;
+$req11 = Game::where('name','like', 'mario%' )->get();
+$r1111 = Game_rating::where('name','like','%3+%')->get();
+$time_end = microtime(true) ;
+$time = $time_end - $time_start ;
+echo "Le temps mis pour la requête est de : ".$time."<br>";
 
-
-$req1 = Game::get();
-
+/*
 foreach($req1 as $value){
     echo "Nom du jeu " . $value->name . "<br>";
     echo "Nom Perso : <br>";
@@ -43,20 +53,8 @@ foreach($req1 as $value){
     foreach($r2 as $v){
         echo $v->name . '<br>';
     }
-}
+}*/
 
-
-
-$time_end = microtime(true) ;
-$time = $time_end - $time_start ;
-
-
-
-
-$db = new DB();
-$db->addConnection(parse_ini_file(__DIR__.'/src/config/dbconfig.ini'));
-$db->setAsGlobal();
-$db->bootEloquent();
 
 
 //$cr = new Genre();
