@@ -90,15 +90,18 @@ foreach ($req5 as $l){
 }
 */
 /*
+
+afficher (name , deck) les personnages du jeu 12342
 $req6 = Game::find(12342);
 echo "NOM DU JEU :" . $req6;
-
 $r = $req6->character()->get();
 echo "<br> <br> PERSOS : <br>";
 foreach($r as $value){
     echo 'id : ' . $value->id . ' name : ' .$value->name . ' deck : ' . $value->deck ."<br>" ;
 }*/
 
+/*
+// Les personnages des jeux dont le nom (du jeu) débute par 'Mario'
 $req7 = Game::where('name','like', 'mario%' )->get();
 foreach($req7 as $value){
     echo "Nom du jeu " . $value->name . "<br>";
@@ -107,4 +110,61 @@ foreach($req7 as $value){
     foreach($r2 as $v){
         echo $v->name . '<br>';
     }
-} 
+} */
+
+//es jeux développés par une compagnie dont le nom contient 'Sony'
+/*
+$req8 = Company::where('name','like','%Sony%')->get();
+echo " Liste des jeux fait par <br> <br>";
+foreach($req8 as $value){
+    echo $value->name ."  :<br> <br>";
+    $r8 = $value->game_dev()->get();
+    foreach($r8 as $v){
+        echo($v->name . "<br>");    
+    }
+    echo"<br><br>";
+}*/
+
+
+//le rating initial (indiquer le rating board) des jeux dont le nom contient Mario
+/*
+$req9 = Game::where('name','like', '%mario%' )->get();
+foreach($req9 as $value){
+    echo $value->name . "<br> <br>";
+    $r9 = $value->gameRating()->get();
+    foreach($r9 as $v){
+    echo " nom : ". $v->name .  "<br>";
+    $r99 = Rating_board::where('id','=',(string)$v->rating_board_id);
+    $r999 = $r99->get();
+    echo " rating_board_id : ". $r999[0]->deck .  "<br>";
+    }
+    echo "<br> <br>";
+} */  
+
+
+/*
+//les jeux dont le nom débute par Mario et ayant plus de 3 personnages
+$req10 = Game::where('name','like', 'mario%' )->get();
+foreach($req10 as $value){
+    $r10 = $value->character()->get();
+    if(count($r10) > 3){
+        echo "Nom du jeu " . $value->name . ",   Nb de persos : " . count($r10) ."<br>" ;
+    }
+}*/
+
+/*
+//les jeux dont le nom débute par Mario et dont le rating initial contient "3+" 
+$req11 = Game::where('name','like', 'mario%' )->get();
+$r1111 = Game_rating::where('name','like','%3+%')->get();
+foreach($req11 as $value){
+    $r111 = $value->gameRating()->get();
+   foreach($r111 as $v){
+       foreach($r1111 as $va){
+            if($v->id == $va->id){
+                echo $value->name . "<br>";
+            }
+       }
+    }
+}
+
+*/
