@@ -45,4 +45,6 @@ class Character extends \Illuminate\Database\Eloquent\Model
                                     'char2_id');
     }
 
+
+
 }
