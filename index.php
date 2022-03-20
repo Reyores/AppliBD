@@ -39,8 +39,9 @@ $db->bootEloquent();
 
 
 $time_start = microtime(true) ;
-$req11 = Game::where('name','like', 'mario%' )->get();
-$r1111 = Game_rating::where('name','like','%3+%')->get();
+//$req11 = Game::where('name','like', 'Zelda%' )->get();
+//$r1111 = Game_rating::where('name','like','%3+%')->get();
+$req11 = Company::where('location_country','=','United kingdom');
 $time_end = microtime(true) ;
 $time = $time_end - $time_start ;
 echo "Le temps mis pour la requête est de : ".$time."<br>";
