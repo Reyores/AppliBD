@@ -1,7 +1,8 @@
 {
   "require":{
     "illuminate/database": "^8.73.0",
-    "php": ">=7.3"
+    "php": ">=7.3",
+    "fzaninotto/faker": "^1.5"
   },
 
   "autoload":{
