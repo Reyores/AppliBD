@@ -62,6 +62,14 @@ $app->get('/api/games/{id}[/]', function (Request $rq, Response $rs, array $args
 })->setName('avoirJeux');
 
 
+
+//Partie 2
+$app->get('/api/games[/]', function (Request $rq, Response $rs, array $args) use ($container): Response {
+    $controleur = new ControlleurJeux($container);
+    return $controleur->recuperer200Premier($rq, $rs, $args);
+})->setName('200Premier');
+
+
 $app->run();
 
 

@@ -35,4 +35,26 @@ class ControlleurJeux {
         $rs->getBody()->write(json_encode($tabJeu));
         return $rs;
     }
+
+
+    public function recuperer200Premier(Request $rq, Response $rs, $args)
+    {
+        $tabJeu = [];
+        $jeux200 = Game::where("id", "<=", 200)->get();
+        foreach ($jeux200 as $j) {
+            $tab['game'] = [
+                "id" => $j->id,
+                "name" => $j->name,
+                "alias" => $j->alias,
+                "deck" => $j->deck
+            ];
+            $tabJeu[] = $tab;
+        }
+        $tabR =['Games' => $tabJeu];
+
+        $rs = $rs->withHeader('Content-Type', "application/json");
+       $rs->getBody()->write(json_encode($tabR));
+       return $rs;
+    }
+
 }
