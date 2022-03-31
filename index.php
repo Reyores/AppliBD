@@ -53,9 +53,12 @@ $app = new App($container);
 
 
 ########    LES ROUTES  #######
+
+
+//Partie 1
 $app->get('/api/games/{id}[/]', function (Request $rq, Response $rs, array $args) use ($container): Response {
-    $controleur1 = new ControlleurJeux($container);
-    return $controleur1->recupererJeuId($rq, $rs, $args);
+    $controleur = new ControlleurJeux($container);
+    return $controleur->recupererJeuId($rq, $rs, $args);
 })->setName('avoirJeux');
 
 

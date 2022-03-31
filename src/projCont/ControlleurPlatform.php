@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace applibdd\controllers;
+namespace appbdd\controllers;
 
 
 use Slim\Http\Request;
@@ -13,11 +13,11 @@ class ControlleurPlatform
 {
 
 
-    private Container $containter;
+    private Container $container;
 
     public function __construct(Container $c)
     {
-        $this->containter = $c;
+        $this->container = $c;
 
     }
 }

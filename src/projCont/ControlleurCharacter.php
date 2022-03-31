@@ -9,7 +9,7 @@ use Slim\Container;
 
 class ControlleurCharacter
 {
-    private Container $containter;
+    private Container $container;
 
     public function __construct(Container $c)
     {

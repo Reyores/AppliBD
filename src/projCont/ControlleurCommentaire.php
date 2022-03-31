@@ -11,11 +11,11 @@ use Slim\Container;
 class ControlleurCommentaire
 {
 
-    private Container $containter;
+    private Container $container;
 
     public function __construct(Container $c)
     {
-        $this->containter = $c;
+        $this->container = $c;
 
     }
 }
