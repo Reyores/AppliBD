@@ -37,10 +37,13 @@ class ControlleurJeux {
     }
 
 
-    public function recuperer200Premier(Request $rq, Response $rs, $args)
+    public function recuperer200(Request $rq, Response $rs, $args)
     {
+       $pageCour = intval($rq->getQueryParam('page',1));
         $tabJeu = [];
-        $jeux200 = Game::where("id", "<=", 200)->get();
+        //$jeux200 = Game::where("id", "<=", 200*$pageCour)->skip(200*$pageCour-200)->get();
+        $jeux200 = Game::skip(($pageCour-1)*200)->take(200)->get();
+
         foreach ($jeux200 as $j) {
             $tab['game'] = [
                 "id" => $j->id,
@@ -52,9 +55,14 @@ class ControlleurJeux {
         }
         $tabR =['Games' => $tabJeu];
 
+        $next= $pageCour+1;
+        $prev= $pageCour-1;
+        $tabR['Links'] =  ['prev' => ['href' => __Dir__."api\games?page={$prev}"], 'next' => ['href' => __DIR__."api\games?page={$next}"]];
+
+
         $rs = $rs->withHeader('Content-Type', "application/json");
-       $rs->getBody()->write(json_encode($tabR));
-       return $rs;
+        $rs->getBody()->write(json_encode($tabR));
+        return $rs;
     }
 
 }

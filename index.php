@@ -64,10 +64,10 @@ $app->get('/api/games/{id}[/]', function (Request $rq, Response $rs, array $args
 
 
 //Partie 2
-$app->get('/api/games[/]', function (Request $rq, Response $rs, array $args) use ($container): Response {
+$app->get('/api/games', function (Request $rq, Response $rs, array $args) use ($container): Response {
     $controleur = new ControlleurJeux($container);
-    return $controleur->recuperer200Premier($rq, $rs, $args);
-})->setName('200Premier');
+    return $controleur->recuperer200($rq, $rs, $args);
+})->setName('pageJeux');
 
 
 $app->run();
