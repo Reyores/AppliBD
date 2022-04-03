@@ -69,7 +69,7 @@ $app->get('/api/games/{id}[/]', function (Request $rq, Response $rs, array $args
 
 
 //Partie 2
-$app->get('/api/games', function (Request $rq, Response $rs, array $args) use ($container): Response {
+$app->get('/api/games[/]', function (Request $rq, Response $rs, array $args) use ($container): Response {
     $controleur = new ControlleurJeux($container);
     return $controleur->recuperer200($rq, $rs, $args);
 })->setName('pageJeux');
@@ -77,24 +77,30 @@ $app->get('/api/games', function (Request $rq, Response $rs, array $args) use ($
 
 
 //Partie 5
-$app->get('/api/games/{id}/comments', function (Request $rq, Response $rs, array $args) use ($container): Response {
+$app->get('/api/games/{id}/comments[/]', function (Request $rq, Response $rs, array $args) use ($container): Response {
     $controleur = new ControlleurCommentaire($container);
     return $controleur->recupererCollectionCom($rq, $rs, $args);
 })->setName('pageCommentaire');
 
 
 //Partie 6
-$app->get('/api/games/{id}/characters', function (Request $rq, Response $rs, array $args) use ($container): Response {
+$app->get('/api/games/{id}/characters[/]', function (Request $rq, Response $rs, array $args) use ($container): Response {
     $controleur = new ControlleurCharacter($container);
-    return $controleur->characterJeu($rq, $rs, $args);
-})->setName('pageCharacter');
+    return $controleur->collectionCharacterJeu($rq, $rs, $args);
+})->setName('pageCharacters');
 
 
-$app->get('/api/games/{id}/platforms', function (Request $rq, Response $rs, array $args) use ($container): Response {
+$app->get('/api/platforms/{id}[/]', function (Request $rq, Response $rs, array $args) use ($container): Response {
     $controleur = new ControlleurPlatform($container);
     return $controleur->platformJeu($rq, $rs, $args);
 })->setName('pagePlatform');
 
+
+//Partie 7
+$app->get('/api/characters/{id}[/]', function (Request $rq, Response $rs, array $args) use ($container): Response {
+    $controleur = new ControlleurCharacter($container);
+    return $controleur->characterJeu($rq, $rs, $args);
+})->setName('pageCharacter');
 
 $app->run();
 

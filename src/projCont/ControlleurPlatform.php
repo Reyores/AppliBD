@@ -27,7 +27,7 @@ class ControlleurPlatform
 
         $pla = Platform::where("id", "=", $args["id"])->first();
 
-        $tab = ["id" => $pla->id,
+        $tab["platfom"] = ["id" => $pla->id,
             "name" => $pla->name,
             "deck" => $pla->deck,
             "description" => $pla->description,

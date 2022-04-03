@@ -55,7 +55,7 @@ class ControlleurJeux {
 
 
         $tab["links"] =  ["comments" => ["href" => $this->container->router->pathFor("pageCommentaire", ["id" => $jeu->id])],
-            "characters" => ["href" => $this->container->router->pathFor("pageCharacter", ["id" => $jeu->id])]];
+            "characters" => ["href" => $this->container->router->pathFor("pageCharacters", ["id" => $jeu->id])]];
 
         $rs = $rs->withHeader('Content-Type', "application/json");
         $rs->getBody()->write(json_encode($tab));
