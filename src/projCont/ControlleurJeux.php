@@ -39,19 +39,23 @@ class ControlleurJeux {
 
     public function recuperer200(Request $rq, Response $rs, $args)
     {
-       $pageCour = intval($rq->getQueryParam('page',1));
+       $pageCour = intval($rq->getQueryParam("page",1));
         $tabJeu = [];
         //$jeux200 = Game::where("id", "<=", 200*$pageCour)->skip(200*$pageCour-200)->get();
         $jeux200 = Game::skip(($pageCour-1)*200)->take(200)->get();
 
-        foreach ($jeux200 as $j) {
-            $tab['game'] = [
-                "id" => $j->id,
-                "name" => $j->name,
-                "alias" => $j->alias,
-                "deck" => $j->deck
+        foreach ($jeux200 as $jeu) {
+            $tab["game"] = [
+                "id" => $jeu->id,
+                "name" => $jeu->name,
+                "alias" => $jeu->alias,
+                "deck" => $jeu->deck
             ];
+
+            $tab["links"] =  ["self" => ["href" => $this->container->router->pathFor("avoirJeux", ["id" => $jeu->id])]];
+
             $tabJeu[] = $tab;
+
         }
         $tabR =['Games' => $tabJeu];
 
