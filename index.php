@@ -91,7 +91,7 @@ $app->get('/api/games/{id}/characters', function (Request $rq, Response $rs, arr
 
 
 $app->get('/api/games/{id}/platforms', function (Request $rq, Response $rs, array $args) use ($container): Response {
-    $controleur = new \appbdd\controllers\ControlleurPlatform($container);
+    $controleur = new ControlleurPlatform($container);
     return $controleur->platformJeu($rq, $rs, $args);
 })->setName('pagePlatform');
 
