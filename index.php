@@ -32,6 +32,11 @@ use appbdd\modele\Utilisateurs as User;
 use appbdd\modele\Commentaires;
 
 use appbdd\projCont\ControlleurJeux;
+use appbdd\projCont\ControlleurCommentaire;
+use appbdd\projCont\ControlleurCharacter;
+use appbdd\projCont\ControlleurPlatform;
+
+
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -68,6 +73,27 @@ $app->get('/api/games', function (Request $rq, Response $rs, array $args) use ($
     $controleur = new ControlleurJeux($container);
     return $controleur->recuperer200($rq, $rs, $args);
 })->setName('pageJeux');
+
+
+
+//Partie 5
+$app->get('/api/games/{id}/comments', function (Request $rq, Response $rs, array $args) use ($container): Response {
+    $controleur = new ControlleurCommentaire($container);
+    return $controleur->recupererCollectionCom($rq, $rs, $args);
+})->setName('pageCommentaire');
+
+
+//Partie 6
+$app->get('/api/games/{id}/characters', function (Request $rq, Response $rs, array $args) use ($container): Response {
+    $controleur = new ControlleurCharacter($container);
+    return $controleur->characterJeu($rq, $rs, $args);
+})->setName('pageCharacter');
+
+
+$app->get('/api/games/{id}/platforms', function (Request $rq, Response $rs, array $args) use ($container): Response {
+    $controleur = new \appbdd\controllers\ControlleurPlatform($container);
+    return $controleur->platformJeu($rq, $rs, $args);
+})->setName('pagePlatform');
 
 
 $app->run();

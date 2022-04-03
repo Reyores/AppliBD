@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace appbdd\projCont;
 
 use appbdd\modele\Game;
+use appbdd\modele\Game2platform;
+use appbdd\modele\Platform;
 use appbdd\modele\Utilisateurs;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -21,9 +23,9 @@ class ControlleurJeux {
 
     public function recupererJeuId(Request $rq, Response $rs, $args)
     {
-        $jeu = Game::where('id', '=', $args['id'])->first();
+        $jeu = Game::where("id", "=", $args["id"])->first();
 
-        $tabJeu = ["id" => $jeu->id,
+        $tab["game"] = ["id" => $jeu->id,
             "name" => $jeu->name,
             "alias" => $jeu->alias,
             "deck"  => $jeu->deck,
@@ -31,8 +33,32 @@ class ControlleurJeux {
             "original_elease_date" => $jeu->original_release_date
         ];
 
+        $tabP =  Game2platform::where("game_id", "=", $args["id"])->get();
+
+
+        $platforms = [];
+        foreach ($tabP as $p) {
+            $platform =  Platform::where("id", "=", $p->platform_id)->first();
+
+
+            $t["platform"] = ["id" => $platform->id,
+                "name" => $platform->name,
+                "alias" => $platform->alias,
+                "abbreviation"  => $platform->abbreviation,
+            ];
+
+            $t["links"] =  ["self" => ["href" => $this->container->router->pathFor("pagePlatform", ["id" => $platform->id])]];
+
+            array_push($platforms, $t);
+        }
+        $tab["platforms"] = $platforms;
+
+
+        $tab["links"] =  ["comments" => ["href" => $this->container->router->pathFor("pageCommentaire", ["id" => $jeu->id])],
+            "characters" => ["href" => $this->container->router->pathFor("pageCharacter", ["id" => $jeu->id])]];
+
         $rs = $rs->withHeader('Content-Type', "application/json");
-        $rs->getBody()->write(json_encode($tabJeu));
+        $rs->getBody()->write(json_encode($tab));
         return $rs;
     }
 
