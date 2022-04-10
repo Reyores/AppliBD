@@ -37,17 +37,16 @@ use appbdd\projCont\ControlleurCharacter;
 use appbdd\projCont\ControlleurPlatform;
 
 
-
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use Slim\App;
 use Slim\Container;
 
 # Installation de la configuration erreur de Slim
-$config = ['settings' => ['displayErrorDetails' => true, 'dbconfig' => __DIR__.'/src/config/dbconfig.ini']];
+$config = ['settings' => ['displayErrorDetails' => true, 'dbconfig' => __DIR__ . '/src/config/dbconfig.ini']];
 
 $db = new DB();
-$db->addConnection(parse_ini_file(__DIR__.'/src/config/dbconfig.ini'));
+$db->addConnection(parse_ini_file(__DIR__ . '/src/config/dbconfig.ini'));
 $db->setAsGlobal();
 $db->bootEloquent();
 DB::enableQueryLog();
@@ -67,13 +66,11 @@ $app->get('/api/games/{id}[/]', function (Request $rq, Response $rs, array $args
 })->setName('avoirJeux');
 
 
-
 //Partie 2
 $app->get('/api/games[/]', function (Request $rq, Response $rs, array $args) use ($container): Response {
     $controleur = new ControlleurJeux($container);
     return $controleur->recuperer200($rq, $rs, $args);
 })->setName('pageJeux');
-
 
 
 //Partie 5

@@ -22,6 +22,13 @@ class ControlleurCommentaire
 
     }
 
+    /**
+     * Methode qui affiche la collection de commentaire en fonction de l'args
+     * @param Request $rq
+     * @param Response $rs
+     * @param array $args
+     * @return Response
+     */
     public function recupererCollectionCom(Request $rq, Response $rs, array $args)
     {
         $commentaires = Commentaires::where("game", "=", $args["id"])->get();
@@ -47,6 +54,13 @@ class ControlleurCommentaire
 
     }
 
+    /**
+     * Methode qui permet d'ajouter un commentaire
+     * @param Request $rq
+     * @param Response $rs
+     * @param array $args
+     * @return Response
+     */
     public function ajouterCommentaire(Request $rq, Response $rs, $args)
     {
         $donnees = $rq->getParsedBody();
@@ -69,7 +83,7 @@ class ControlleurCommentaire
         $rs = $rs->withStatus(201);
 
 
-        $tab['comments'] = ["href" => $this->container->router->pathFor("pageCharacters", ["id" => $args['id']])];
+        $tab['comments'] = ["href" => $this->container->router->pathFor("pageCommentaire", ["id" => $args['id']])];
 
         $rs->getBody()->write(json_encode($tab));
         return $rs;

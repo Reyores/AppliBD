@@ -19,21 +19,29 @@ class ControlleurCharacter
 
     }
 
-    public function collectionCharacterJeu(Request $rq, Response $rs, array $args) {
+    /**
+     * Methode qui affiche une collection de character en fonction de l'id jeu en args
+     * @param Request $rq
+     * @param Response $rs
+     * @param array $args
+     * @return Response
+     */
+    public function collectionCharacterJeu(Request $rq, Response $rs, array $args)
+    {
         $tabC = Game2character::where('game_id', '=', $args['id'])->get();
 
 
-        $characters=[];
+        $characters = [];
         foreach ($tabC as $c) {
-            $character =  Character::where("id", "=", $c->character_id)->first();
+            $character = Character::where("id", "=", $c->character_id)->first();
 
-            $tab["character"] =[
+            $tab["character"] = [
                 "id" => $character->id,
                 "name" => $character->name,
             ];
 
 
-            $tab["links"] =  ["self" => ["href" => $this->container->router->pathFor("pageCharacter", ["id" => $character->id])]];
+            $tab["links"] = ["self" => ["href" => $this->container->router->pathFor("pageCharacter", ["id" => $character->id])]];
 
             array_push($characters, $tab);
 
@@ -41,16 +49,22 @@ class ControlleurCharacter
         $t["characters"] = $characters;
 
 
-
         $rs = $rs->withHeader('Content-Type', "application/json");
         $rs->getBody()->write(json_encode($t));
         return $rs;
     }
 
+    /**
+     * Methode qui permet d'afficher le character un fonction de l'id
+     * @param Request $rq
+     * @param Response $rs
+     * @param array $args
+     * @return Response
+     */
+    public function characterJeu(Request $rq, Response $rs, array $args)
+    {
 
-    public function characterJeu(Request $rq, Response $rs, array $args) {
-
-        $char =  Character::where("id", "=", $args['id'])->first();
+        $char = Character::where("id", "=", $args['id'])->first();
 
         $tab["character"] = ["id" => $char->id,
             "name" => $char->name,

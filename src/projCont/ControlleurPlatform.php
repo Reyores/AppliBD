@@ -23,7 +23,15 @@ class ControlleurPlatform
 
     }
 
-    public function platformJeu(Request $rq, Response $rs, array $args) {
+    /**
+     * Methode qui permet d'afficher la platform en fonction de l'args
+     * @param Request $rq
+     * @param Response $rs
+     * @param array $args
+     * @return Response
+     */
+    public function platformJeu(Request $rq, Response $rs, array $args)
+    {
 
         $pla = Platform::where("id", "=", $args["id"])->first();
 
