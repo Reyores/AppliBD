@@ -28,11 +28,12 @@ class ControlleurCommentaire
         $tabRes = [];
 
         foreach ($commentaires as $c) {
+            $user = Utilisateurs::where('email', '=', $c->postedBy)->first();
             $tab = ["id" => $c->id,
                 "titre" => $c->titre,
                 "contenue" => $c->contenue,
-                "dateCreation" => $c->created_at,
-                "nomUtilisateur" => $c->postedBy
+                "created_at" => $c->created_at,
+                "Nom" => $user->nom,
             ];
 
 
