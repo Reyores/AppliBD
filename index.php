@@ -82,6 +82,11 @@ $app->get('/api/games/{id}/comments[/]', function (Request $rq, Response $rs, ar
     return $controleur->recupererCollectionCom($rq, $rs, $args);
 })->setName('pageCommentaire');
 
+$app->post('/api/games/{id}/comments[/]', function (Request $rq, Response $rs, array $args) use ($container): Response {
+    $controleur = new ControlleurCommentaire($container);
+    return $controleur->ajouterCommentaire($rq, $rs, $args);
+})->setName('pageCommentaire');
+
 
 //Partie 6
 $app->get('/api/games/{id}/characters[/]', function (Request $rq, Response $rs, array $args) use ($container): Response {
