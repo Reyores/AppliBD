@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace appbdd\projCont;
 
+use appbdd\modele\Commentaires;
 use appbdd\modele\Game;
 use appbdd\modele\Utilisateurs;
 use Slim\Http\Request;
@@ -21,8 +22,27 @@ class ControlleurCommentaire
 
     }
 
-    public function recupererCollectionCom(ServerRequestInterface $rq, ResponseInterface $rs, array $args)
+    public function recupererCollectionCom(Request $rq, Response $rs, array $args)
     {
+        $commentaires = Commentaires::where("game", "=", $args["id"])->get();
+        $tabRes = [];
+
+        foreach ($commentaires as $c) {
+            $tab = ["id" => $c->id,
+                "titre" => $c->titre,
+                "contenue" => $c->contenue,
+                "dateCreation" => $c->created_at,
+                "nomUtilisateur" => $c->postedBy
+            ];
+
+
+            $tabRes[] = $tab;
+        }
+
+        $comments["comments"]=$tabRes;
+        $rs = $rs->withHeader("Content-Type", "application/json");
+        $rs->getBody()->write(json_encode($comments));
+        return $rs;
 
     }
 }
